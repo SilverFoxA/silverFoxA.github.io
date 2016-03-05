@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <div class="page-content">
+<!--      <div class="wrapper">-->
+        {{ content }}
+<!--      </div>-->
+    </div>
+<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+     {% include footer.html %}
+      <script type="text/javascript" src="{{site.baseurl}}/js/owl.carousel.js"></script>
+      <script type="text/javascript" src="{{site.baseurl}}/js/functions.js"></script>
+      {% include google_analytics.html %}
+      <script type="text/javascript">
+          //OWL CAROSEL TESTIMONIAL
+            $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:false,
+            dots:true,
+            dotsEach:true,
+            responsive:{
+            0:{
+            items:1
+            },
+            600:{
+            items:1
+            },
+            1000:{
+            items:1
+            }
+            }
+            });
+            $(function() {
+            var $nav_active = $(' #primary-menu ul li');
+            $($nav_active).on("click", function() {
+
+            // Remove class from active tab
+            $($nav_active).removeClass("current");
+
+            // Add class active to clicked tab
+            $(this).addClass("current");
+            });
+            });
+      </script>
+      <script src="{{site.baseurl}}/js/wow.min.js"></script>
+    <script>new WOW().init();</script>
+  </body>
+
+</html>

@@ -1,0 +1,50 @@
+---
+layout: blog_default
+---
+<div class="container">
+    <div class="post-wrapper">
+        <div class="col-md-11">
+            <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                <header class="post-header">
+                    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+                        <p class="post-meta">
+                            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                            <h3 style="margin: 0;font-weight: 300;margin-bottom: 10px;">
+                                Posted on {{ page.date | date: "%b %-d, %Y" }}
+                            </h3>
+                            </time>
+                            {% if page.author %} •
+                            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                <span itemprop="name">{{ page.author }}</span>
+                            </span>{% endif %}
+                        </p>
+                </header>
+            <article role="main" class="blog-post">
+                {{ content }}
+	        </article>
+
+{% if page.tags %}
+	  <div class="blog-tags">
+		Tags: {{ page.tags | join: ", " }}
+	  </div>
+	  {% endif %}
+      {% include share.html %}
+      <ul class="pager blog-pager">
+        {% if page.previous.url %}
+            <li class="previous">
+                <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
+            </li>
+        {% endif %}
+        {% if page.next.url %}
+        <li class="next">
+          <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
+        </li>
+        {% endif %}
+      </ul>
+     <div class="disqus-comments">
+	    {% include disqus.html %}
+      </div>
+</article>
+</div>
+    </div>
+    </div>

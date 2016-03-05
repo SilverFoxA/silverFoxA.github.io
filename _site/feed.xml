@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>silverFoxA</title>
+    <description></description>
+    <link>http://yourdomain.com/</link>
+    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 05 Mar 2016 12:40:10 +0530</pubDate>
+    <lastBuildDate>Sat, 05 Mar 2016 12:40:10 +0530</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>How I developed GetOn?</title>
+        <description>&lt;font size=&quot;4&quot; style=&quot;font-weight:600;&quot;&gt;Date - 19/12/2015&lt;/font&gt;
+&lt;font size=&quot;4&quot;&gt;Making an application seems interesting but it’s a storm for the brain where you are not allowed to think about one particular class but you have entire pacific ocean to explore.This particular experimental app is meant for polishing my web scrapping skill as well as to write some efficient code. When you are talking about scrapping, it always mean re-organizing other’s mess for betterment. The same stands for data scrapping or web scrapping as well.&lt;br /&gt;For this particular app I will be scrapping&lt;br /&gt; &lt;ul&gt;&lt;li&gt;&lt;font size=&quot;4&quot;&gt;&lt;a href=&quot;http://www.google.com&quot;&gt;Google&lt;/a&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font size=&quot;4&quot;&gt;&lt;a href=&quot;http://www.twitter.com&quot;&gt;Twitter&lt;/a&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font size=&quot;4&quot;&gt;&lt;a href=&quot;http://www.instagram.com&quot;&gt;Instagram&lt;/a&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;br /&gt;These three are the source of information for all sort of data. From these three site one can retrieve almost all possible data that one can ever need if it&#39;s presented in proper manner.&lt;/font&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Just like any other software development, this particular app will follow the same life cycle and I will be blogging about the entire life cycle as I made progress on this application&lt;/font&gt;&lt;/p&gt;
+
+&lt;div&gt;
+&lt;span class=&quot;quote&quot;&gt;&quot;I believe We have Rights to information&quot;&lt;/span&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt; &lt;font size=&quot;4&quot;&gt;The application stands for the same as well.&lt;br /&gt;Scrapping Google isn&#39;t an easy task when all the items that they have are completely dynamic and you barely get any left over. Moreover &lt;strong&gt;if Google detects you scrapping their data they will first warn you and later they will block you temporarily. &lt;a href=&quot;http://google-scraper.squabbel.com/&quot;&gt;source&lt;/a&gt;&lt;/strong&gt;. Today I tried scrapping the web but unfortunately couldn&#39;t retrieve any data whatsoever I needed for the web.&lt;/font&gt;
+&lt;br /&gt;&lt;font size=&quot;4&quot;&gt;For this particular experiment I have used &lt;a href=&quot;http://www.jsoup.org&quot;&gt;Jsoup&lt;/a&gt;&lt;/font&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;pre&gt;
+package JsoupPrac;
+
+import java.io.IOException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class GoogleScrapper {
+	public static void main(String[] args) throws IOException{
+		  String url = &quot;https://www.google.co.in/#q=query&quot;;
+	        Document document = Jsoup.connect(url) .userAgent(&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36&quot;)
+	        	     .get();
+	        //System.out.println(document+&quot;&quot;);
+	        Elements answerers = document.select(&quot;div ._mr .kno-fb-ctx&quot;);
+	        System.out.println(answerers+&quot;&quot;);
+	        for (Element answerer : answerers) {
+	            System.out.println(&quot;Answerer: &quot; + answerer.text());
+	        }
+	        //Unfortunately it provides no result
+	}
+}
+
+&lt;/pre&gt;
+
+&lt;font size=&quot;4&quot;&gt;I got few alternative though, which is yet to be explored. &lt;/font&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;I came accross this website where this person, Amit Agarwal tries to explain how to scrap using excel/ google sheets  &lt;a href=&quot;http://www.labnol.org/internet/google-web-scraping/28450/&quot;&gt;source&lt;/a&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Another way that came to my mind is to download the entire source of the file that we get when inspecting. So for each search basically I will be saving the entire page and Google need not know that I&#39;m scrapping as it will be one search. [just a thought]&lt;/font&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;font size=&quot;4&quot;&gt;As per Amit Agarwal
+&lt;pre&gt;
+Google Search Scraper using Google Spreadsheets
+
+If you ever need to extract results data from Google search, there’s a free tool from Google itself that is perfect for the job. It’s called Google Docs and since it will be fetching Google search pages from within Google’s own network, the scraping requests are less likely to get blocked.
+&lt;/pre&gt;
+&lt;/font&gt;
+
+&lt;font size=&quot;4&quot;&gt;Okay so my idea doesn&#39;t seem to be working at this moment, as Google has it&#39;s own way of pushing their code for some obvious reason though &lt;a href=&quot;http://stackoverflow.com/questions/16078926/how-does-google-hide-html-source-of-search-results&quot;&gt;source&lt;/a&gt;&lt;/font&gt;
+&lt;pre&gt;
+Google builds the DOM with the javascript you noted. It does this for a number of reasons:
+
+Decrease the load on the server to generate each dynamic result set with HTML markup.
+Google returns the results in a JSON feed (example) - pastebin. Less processing power is required to produce the JSON response than a full HTML snippet or completely new page
+Speed. Assuming that the user has a decent internet connection, the speed of the pages rendering on the client side compared to the server side is negligible.
+&lt;/pre&gt;
+
+&lt;pre&gt;Google does that by generating the page using a pile of client side JavaScript. It&#39;s almost certainly a side effect, not a design goal.&lt;/pre&gt;
+
+&lt;font size=&quot;4&quot;&gt;There&#39;s also a project in PHP available &lt;a href=&quot;http://scraping.compunect.com/&quot;&gt;source&lt;/a&gt; but I won&#39;t be looking into it for two reason 
+&lt;ul&gt;&lt;li&gt;&lt;font size=&quot;4&quot;&gt;It&#39;s my experiment so I want to develope something of my own.&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Integrating Java and Php can be trickier.&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/font&gt;
+
+&lt;font size=&quot;4&quot;&gt;So finally got something but it&#39;s not what I need for my app, hence we don&#39;t have the option to extract whatever data we want so far&lt;/font&gt;
+&lt;pre&gt;
+package JsoupPrac;
+
+import java.io.IOException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class GoogleScrapper {
+	public static void main(String[] args) throws IOException{
+		Document doc;
+	    try{
+	        doc = Jsoup.connect(&quot;https://www.google.co.in/search?as_q=&amp;amp;as_oq=query&amp;amp;as_eq=&amp;amp;as_nlo=&amp;amp;as_nhi=&amp;amp;lr=lang_en&amp;amp;cr=countryCA&amp;amp;as_qdr=all&amp;amp;as_sitesearch=&amp;amp;as_occt=any&amp;amp;safe=images&amp;amp;tbs=&amp;amp;as_filetype=&amp;amp;as_rights=&amp;amp;gws_rd=cr&amp;amp;ei=4Id1Vs7pC8rQjwOEkbP4CA#lr=lang_en&amp;amp;cr=countryCA&amp;amp;as_qdr=all&amp;amp;tbs=lr:lang_1en%2Cctr:countryCA&amp;amp;q=query&quot;).userAgent(&quot;Mozilla&quot;).ignoreHttpErrors(true).timeout(0).get();
+	        Elements links = doc.select(&quot;ol[class=g]&quot;);
+	        for (Element link : links) {
+	            Elements titles = link.select(&quot;h3[class=r]&quot;);
+	            String title = titles.text();
+
+	            Elements bodies = link.select(&quot;span[class=st]&quot;);
+	            String body = bodies.text();
+
+	            System.out.println(&quot;Title: &quot;+title);
+	            System.out.println(&quot;Body: &quot;+body+&quot;\n&quot;);
+	        }
+	    }
+	    catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+}
+
+&lt;/pre&gt;
+
+&lt;font size=&quot;4&quot;&gt;Okay don&#39;t ask me how but this seems to be working now&lt;/font&gt;
+&lt;pre&gt;
+public static void main(String[] args) throws IOException{
+		Document doc;
+	    try{
+	        doc = Jsoup.connect(&quot;https://www.google.co.in/search?as_q=&amp;amp;as_oq=query&amp;amp;as_eq=&amp;amp;as_nlo=&amp;amp;as_nhi=&amp;amp;lr=lang_en&amp;amp;cr=countryCA&amp;amp;as_qdr=all&amp;amp;as_sitesearch=&amp;amp;as_occt=any&amp;amp;safe=images&amp;amp;tbs=&amp;amp;as_filetype=&amp;amp;as_rights=&amp;amp;gws_rd=cr&amp;amp;ei=4Id1Vs7pC8rQjwOEkbP4CA#lr=lang_en&amp;amp;cr=countryCA&amp;amp;as_qdr=all&amp;amp;tbs=lr:lang_1en%2Cctr:countryCA&amp;amp;q=query&quot;).userAgent(&quot;Mozilla&quot;).ignoreHttpErrors(true).timeout(0).get();
+	        Elements links = doc.select(&quot;#rhs_block&quot;);
+	        for (Element link : links) {
+	        	Elements again = link.select(&quot;._B5d&quot;);
+	        		System.out.println(again.text().toString());
+	        }
+	    }
+	    catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+&lt;/pre&gt;
+
+&lt;font size=&quot;4&quot; style=&quot;font-weight:600;&quot;&gt;Date - 22/12/2015&lt;/font&gt;
+&lt;font size=&quot;4&quot;&gt;Okay I was bit busy lately with the club we going to organise in our college hence didn&#39;t get time to work on this project. Fortunately I have good news. Okay so I asked a question on stackoverflow &lt;a href=&quot;http://stackoverflow.com/questions/34389558/how-can-i-retrieve-the-inspected-source-code-google-chrome-in-java/34389583#34389583&quot;&gt;link&lt;/a&gt;, the answer here is exactly what we are looking for but for the time being we are not yet sure how we shall implement the same in a smartphone. For this we will ne needing &lt;a href=&quot;http://www.seleniumhq.org/download/&quot;&gt;Selenium&lt;/a&gt; make sure to download the Selenium Standalone Server and Selenium Client &amp;amp; WebDriver Language Bindings also we will be needing a web driver for the browser you would like to work on.&lt;/font&gt;
+
+&lt;pre&gt;
+WebDriver driver;
+		System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;/Users/Avi/Downloads/chromedriver&quot;);
+        driver= new ChromeDriver();   
+		driver.get(url);
+		Document doc = Jsoup.parse(driver.getPageSource());
+		System.out.println(doc);
+	    Elements links = doc.select(&quot;a.fl&quot;);
+	        for (Element link : links) {
+	        		System.out.println(link.attr(&quot;abs:href&quot;).toString());
+	        }
+&lt;/pre&gt;
+&lt;font size=&quot;4&quot;&gt;So now basically we have all the source code in HTML which we can parse using Jsoup.&lt;/font&gt;
+
+&lt;font size=&quot;4&quot; style=&quot;font-weight:600;&quot;&gt;Date - 23/12/2015&lt;/font&gt;
+&lt;font size=&quot;4&quot;&gt;As per the comment on my stackoverflow post from alecxe, the same can be implemented with mobile browser as well.&lt;/font&gt;
+&lt;pre&gt;
+You can actually automate mobile browsers via selenium and appium
+&lt;/pre&gt;
+
+&lt;font size=&quot;4&quot;&gt;Now we need to look into the following &lt;ul&gt;&lt;li&gt;Selenium&lt;/li&gt;&lt;li&gt;appium&lt;/li&gt;&lt;/ul&gt;&lt;/font&gt;
+
+&lt;font size=&quot;4&quot;&gt;[To be Continued...]&lt;/font&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 18 Dec 2015 00:00:00 +0530</pubDate>
+        <link>http://yourdomain.com/2015/12/18/Geton-post.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2015/12/18/Geton-post.html</guid>
+        
+        <category>geton</category>
+        
+        <category>silverFoxA</category>
+        
+        <category>Android</category>
+        
+        <category>Google Play Store</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Dream Big</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://i.ytimg.com/vi/JCMTs56w2no/maxresdefault.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;span class=&quot;quote&quot;&gt;“Life is short hence time is less but dreams are big, to achieve success either run wild or learn parallel processing”&lt;/span&gt;&lt;/div&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;This article is about me on how everything gets changed over the time. I would like to start off by introducing myself first. I am silverFoxA, an android developer and web developer, a programmer, coder and a software developer, a designer too by passion. I want to be an entrepreneur and want to have a company which will change your world up side down with virtual reality on the top most layer.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;      &amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font size=&quot;4&quot;&gt;I was an average kid who belongs to a middle class family, just like any other average kid from a middle class family I too dreamt big, which seems to be impossible at that point of time when I had no resources or exposure to anything to which my dreams relate to, where all other kid of my age was exposed to the new era of internet and advancement of computation knowledge. The strive to explore more information helped me polish my skills and gave me a new vertex in life. It gave me the ability to shape anything into an interactive piece of art, hence opened a way for me to express myself to the world. I found the skill to be promising in shaping my life to achieve my goal and drive me one step ahead as a designer, an artist most importantly a dreamer. It gave me an opportunity to fill most part of my life and I tried making myself perfect in that field.&lt;/font&gt;
+&lt;/p&gt;
+&lt;div&gt;
+&lt;span class=&quot;quote&quot;&gt;“...Your work will fill most part of your life... – Steve Jobs”&lt;/span&gt;&lt;/div&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Now the speech by Steve Jobs makes sense to me in the right context. 
+It became my passion then, which made me learn a lot in both educational and day-day aspects of life, I was awarded in multiple drawing competitions where I took part, which made me as well as my family happy, also gave me the eagerness to learn and explore more.
+&lt;/font&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://scontent-sin1-1.xx.fbcdn.net/hphotos-xlp1/t31.0-8/q84/p960x960/12303991_411192982412464_6072911513239797858_o.jpg&quot; style=&quot;width:100%;&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://scontent-sin1-1.xx.fbcdn.net/hphotos-xaf1/t31.0-0/p180x540/12265740_411192932412469_3679430932023138420_o.jpg&quot; style=&quot;width:100%;&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;font size=&quot;4&quot;&gt;In earlier part of my life I was not focused in my dreams, but it is the only thing which made me keep going forward. As a designer, I was fond of creativity hence all the times I used to imagine the world in my own way. One fine day I dreamt of how the world should be, where everyone will be happy, all will have time for themselves and for their family the most and more, which is possible now only because of the era of internet. That one dream changed my entire life.&lt;/font&gt;
+&lt;p&gt;
+&lt;div&gt;
+&lt;span class=&quot;quote&quot;&gt;“If your dream doesn’t scare you, it isn’t big enough”&lt;/span&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Earlier I planned on joining game development courses after my high school in which I was most interested back then, but at the end moment I decided to choose what I dreamt off and took Computer Science Engineering as the domain, where I had no idea about the programming language and no basic about computation other than using the system and it’s the truth believe me or not.&lt;/font&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;span class=&quot;quote&quot;&gt;“You will never know what surprise life will through at you” &lt;/span&gt;&lt;/div&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Hence I have started learning everything from scratch by myself most of the content mainly the languages which will help me bring the dream to reality. Today I am in a position where I have advanced one-fifth of the path to my dream which not just includes programming skills but also the concept to entrepreneur skills which I wouldn’t have achieved if I were not come across a close friend “Irfan Ali”, he dragged me into most of the important content which gave me exposure to the corporate world, which gave me a clear overview of what I need to understand. 
+&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;//TODO 30-11-2015&lt;/p&gt;
+</description>
+        <pubDate>Mon, 30 Nov 2015 00:00:00 +0530</pubDate>
+        <link>http://yourdomain.com/2015/11/30/dream-big.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2015/11/30/dream-big.html</guid>
+        
+        <category>dream</category>
+        
+        <category>silverFoxA</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>TechSparks 2015</title>
+        <description>&lt;p&gt;&lt;img src=&quot;http://d152j5tfobgaot.cloudfront.net/wp-content/uploads/2015/10/Hackathon-1.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;font size=&quot;4&quot;&gt;
+On 29th October 2015 TechSparks hackathon was organised by Yourstory, where the hackers are to overcome the challenges faced by the common problem in day-day basis as well as improve the experience and functionality of the sponsor&#39;s api, where the sponsors are Exotel, Reverie, Loginext, dailyhunt and teamchat.&lt;/font&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Venue : Sheraton Bangalore At Brigade Gateway&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Team Members : &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/profile/view?id=AAMAABV-4nMBg26svfS_TCYjJI_5XhRsIwx-vxg&amp;amp;authType=name&amp;amp;authToken=v3az&amp;amp;trk=hp-feed-member-name&quot;&gt;Dilip.S&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/profile/view?id=AAEAABSRrJQB5EcEGCNCuC7N9yu9nuJDCn2D8-k&amp;amp;trk=miniprofile-name-link&quot;&gt;Irfan Ali&lt;/a&gt; and &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://in.linkedin.com/pub/abhijit-das/a6/819/538&quot;&gt;Abhijit Das&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br /&gt;&lt;font size=&quot;4&quot;&gt;This particular event was completely new experience for me, well to be precise it was the wierdest experience of this year. In this event we were not supposed to inevent anything, it was meant only for helping them clearing out the bugs that their technology has and try to improve it, which we came to know a little later also it was too late for us when we realised the fact. We were told to use any one of the api within our product, so we decided to use &quot;TeamChat&quot; api. As per their introduction it was told to us about the way it can be helpful and have been mentioned that the app can be build for all the platform but it was not told to us that the operation will be taken place in the server but not on the system hence we can not integrate the SDK to our product where we planned to make our own messenger with the bot integration from the teamchat. Later by that I mean after almost 2-3 hrs we came to know that the teamchat sdk can not be integrated to the android platform and we are to code the bot, hence customise the bot, I have no interest in criticising anyone but to be honest it was a rough experience for us. Once we realised if we use their api we will be completely restricted to what they want, we decided to go with our plan and move to a new api.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;We were not happy with our performance because of that incident we broke totally, we somehow completed that task and returned home. One more thing that happended that very day was that our team broke where Me and Irfan left.&lt;/font&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 29 Oct 2015 00:00:00 +0530</pubDate>
+        <link>http://yourdomain.com/2015/10/29/techspark-post.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2015/10/29/techspark-post.html</guid>
+        
+        <category>techspark</category>
+        
+        <category>yourstory</category>
+        
+        <category>hackathon</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>CAMTech Diabetes Hackathon 2015</title>
+        <description>&lt;p&gt;&lt;img src=&quot;http://blog.digmed.in/wp-content/uploads/2015/06/jugaadathon2015.png&quot; width=&quot;100%&quot; height=&quot;50%&quot; /&gt;&lt;/p&gt;
+&lt;font size=&quot;4&quot;&gt;
+On 10th and 11th October 2015 CAMTech Diabetes Innovation Hackathon was organised in collaboration with Lattice Inovation to deal with diabetes with the help of technology by 350 entrepreneurs, designers, programmers, engineers and medical experts. The event is being hosted by US-based Consortium for Affordable Medical Technologies&lt;/font&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Venue :&lt;a href=&quot;http://www.isb.edu/&quot;&gt; Indian School of Business Gachibowli, Hyderabad, Telangana 500032&lt;/a&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Team Members : &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/profile/view?id=AAMAABV-4nMBg26svfS_TCYjJI_5XhRsIwx-vxg&amp;amp;authType=name&amp;amp;authToken=v3az&amp;amp;trk=hp-feed-member-name&quot;&gt;Dilip.S&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/profile/view?id=AAEAABSRrJQB5EcEGCNCuC7N9yu9nuJDCn2D8-k&amp;amp;trk=miniprofile-name-link&quot;&gt;Irfan Ali&lt;/a&gt; and &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://in.linkedin.com/pub/abhijit-das/a6/819/538&quot;&gt;Abhijit Das&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;font size=&quot;4&quot;&gt;
+The main purpose of this hackathon was to design and prototype a solution with proper business plan to deal with diabetes with htechnology.&lt;br /&gt;
+Challenges :&lt;/font&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Recording and reporting of blood glucose measurements&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Giving dietary advice to Indian patients&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Enabling diabetes triage – across patients, paramedics &amp;amp; doctors&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Enabling diabetic patients to access social support&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Raising awareness around retinopathy and diabetes&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Educating patients on acceptable blood sugar levels&lt;/font&gt;&lt;/li&gt;
+...
+&lt;/ul&gt;
+&lt;font size=&quot;4&quot;&gt;
+It was an awesome experience back there at Indian School of Business. Although we couldn&#39;t make it but it was worth a try than simply thinking about it and doing nothing.&lt;/font&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.livemint.com/rf/Image-621x414/LiveMint/Period1/2014/06/20/Photos/DSC_4777--621x414.JPG&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpt1/v/t1.0-9/s720x720/12079695_1193032390711898_5410467387934432572_n.jpg?oh=9489b829b4dbeec6b62fddeeb8e5446c&amp;amp;oe=568B461B&amp;amp;__gda__=1452563223_67d8773cdb8b3996d02e8b33dee4212d&quot; width=&quot;100%&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://scontent-mxp1-1.xx.fbcdn.net/hphotos-xpt1/v/l/t1.0-0/p480x480/12140668_1193032394045231_233605732804387199_n.jpg?oh=f9de0c718ffcd4aaef6bba87e2511d3f&amp;amp;oe=56872CEC&quot; width=&quot;100%&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://fbcdn-photos-g-a.akamaihd.net/hphotos-ak-xta1/v/t1.0-0/p480x480/12122530_1193032547378549_8798546771540451229_n.jpg?oh=6a1d32ccd4007db88b2d623c3fcbc585&amp;amp;oe=56CB8596&amp;amp;__gda__=1456140521_6c71b97b2b7cb4cbbac06a8cf0865c1f&quot; width=&quot;100%&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;&lt;br /&gt;&lt;font size=&quot;4&quot;&gt;
+We (Team - Elpha, product - Dia-LivMe) tried to solve the problem of educating (awareness)the people about diabetes, recording and reporting blood glucose, dietry advice, enebaling the patient to access social support as well as identifying foot ulcer.I still believe, we could have won the competition but because of lack of understanding between us and misplaced of keypoints in the presentation we loose the competition. But winning and loosing is a part of life so I strongly believe that the same situation won&#39;t come to our team in near future. We have big plans on making it a framework rather than just a solution. We want it to help both patient and clinician in all manners.
+&lt;/font&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://scontent.fdel1-1.fna.fbcdn.net/hphotos-xal1/v/t1.0-0/p206x206/12144816_400553356809760_8417722416653519488_n.jpg?oh=2fd2cc24c0a1f5ccc6552430227a7898&amp;amp;oe=56D387BB&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;font size=&quot;4&quot; color=&quot;RED&quot;&gt;Result : We Lost the competition but learnt many things&lt;/font&gt;
+</description>
+        <pubDate>Sat, 10 Oct 2015 00:00:00 +0530</pubDate>
+        <link>http://yourdomain.com/2015/10/10/cmTD2015-post.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2015/10/10/cmTD2015-post.html</guid>
+        
+        <category>CAMTech</category>
+        
+        <category>ISB</category>
+        
+        <category>Indian School of Business</category>
+        
+        <category>Hyderabad</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Day Before Hackathon</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://www.vidteq.com/images/wow/Hyderabad_bn.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;font size=&quot;4&quot;&gt;
+Bangalore to Hyderabad, was a work cum trip for us.I was thrilled as I never went anywhere alone by that I mean I was not allowed to move out without family members with me also it was the first time I visited Hyderabad. It was a small vacation within the busy college schedule to explore few new places as well as gain some ideas. The trip was pretty much as we expected if we leave the odds that we came accross.&lt;/font&gt;
+&lt;font size=&quot;4&quot;&gt;
+In this post I would like to share my own experience througout the trip. On 8th October 2015 we got on bus, to Hyderabad direct. We also planned to discuss over the night regarding the plans we will be executing for the next day, but unfortunately I was not in shape to response them or even be in the conversation. So we basically decide on what to do for the hackathon and came up with the basic overflow. I slept off early as usual and Dilip and Irfan were talking among themselves before they went to sleep.&lt;/font&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://scontent-sin1-1.xx.fbcdn.net/hphotos-xlt1/t31.0-8/12080017_400553326809763_1607327719569979329_o.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;font size=&quot;4&quot;&gt;
+The next day early morning we reached our destination, Gachibowli at around 8 o&#39;clock. We got down started looking for a shelter checked online but there was no nearby hotels or lodge to go. So we were roaming here and there to look for a place to stay and was reluctant to take help from the auto drivers as they were ready to loot you. After searching for more than an hour we had no other option but to ask a person who knows. The funniest part that happened was we called only one auto driver to enquire after that one after one came in, almost 20, I had no idea what was happening. Later a auto driver came whom we spoke to before but wass not interested that time but now we had no choice but to take help from him. He drove us to a nearby hotel. It was not five star but atleast we had a place to stay. So we settled down took our time to fresh up. As the next day is our hackathon we had only this day to roam around Hyderabad.We had no proper plan orplaces to visit, so Dilip asked the hotel receptionist what all are the nearby places to visit, he told all the places will be nearby one another and it&#39;s almost 5 km from the place we are stayimg. So we made a short plan that first we will go to Birla Temple from there we will go to Charminar but if it&#39;s around 1:45 which when Irfan needs to go to mosque, so we will go to a nearby place. Tha was the plan we made. So we walked to the main road in order to have breakfast, but unfortunately that wasn&#39;t Bangalore there people won&#39;t start up the shops before 11Am I have no idea why. So we got on bus and decided whereever we see resturant we will get down from the bus, luckily they had the daily pass system there as well. So we got down near a resturant, initially I thought the food to be super good but later realised it&#39;s not that good other than the pickel, it was something different but tasted very good. After having breakfast we moved to Birla mandir which was near to us moreover Dilip wanted to visit, I was excited for anything it&#39;s new to me.&lt;/font&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://fbcdn-photos-e-a.akamaihd.net/hphotos-ak-xta1/v/t1.0-0/p526x296/12109079_399314073600355_367878598319841403_n.jpg?oh=71ea92ad9c891c91088c89c439733586&amp;amp;oe=5697C51C&amp;amp;__gda__=1452244713_085abd88e64e6e109884c8af4b4f40d0&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;table&gt;&lt;tr&gt;
+&lt;td&gt;&lt;img src=&quot;https://scontent-sin1-1.xx.fbcdn.net/hphotos-xat1/t31.0-8/11224191_400553420143087_8344196258380944436_o.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://scontent-sin1-1.xx.fbcdn.net/hphotos-xpl1/t31.0-8/12139929_400553390143090_729946043000848456_o.jpg&quot; width=&quot;100%&quot; /&gt;
+&lt;/td&gt;&lt;td&gt;&lt;img src=&quot;http://www.indialine.com/travel/images/birlatemple-jaipur.jpg&quot; width=&quot;100%&quot; /&gt;
+&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;http://www.holidayiq.com/destreviewimages/shareiq_378_1395317244.033224.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;font size=&quot;4&quot;&gt;
+Birla mandir is awesome in one word, it&#39;s so beautiful but the most beautiful part of it is the view that you get to see from the top most part allowed to go in the temple. From there you get to see almost the entire Hyderabad, crystal clear. Unfortunately for us they didn&#39;t allow us to take phones so people can&#39;t capture the shot to show people, well thats good right? If you want to feel and experience the awesomeness about Birla mandir just give a visit. One thing I will warn you about take precautions when walking the stairs to all the way up hahaha it&#39;s because you are not allowed to wear shoes or chappals etc. so you have to go barefoot and the ground is nt soil,it&#39;s mostly concrete moreover so shiny sun just imagine the rest on your own. From there we moved out affter talking few selfies and pictures. It was almost 1:45, as per the plan we are to go to a mosque, so we thought let&#39;s go to Charminar there&#39;s plenty of mosque but buses from the current location to charminar is very rear. So we searched for a nearby mosque and we went there.
+
+Irfan was worried that it might start by 1pm but luckily its the same time there too, unluckily me and Dilip had to spent two hours there as irfan went in and we were sitting outside. In order to utilise that time we started discussing about the plan and things we are supposed to do. One thing was clear to me that for particularly this hackthon our team co-ordination was nearly zero. We had no team cor-ordination, all had different mindset and all were thinking differently on the same. We discussed a lot and came to a conclusion for the time being meanwhile irfan came in. We shared a glimpse of what we discussed. It was almost 2 o&#39;clock and we were super hungry yet we decided we will go to Charminar and will have our lunch there nearby.
+
+The place is new to all of us and because of not knowing the place we rerouted few times, but the pepole of hyderabad is very kind that i have to say, in each and every places they helped us no thanks to the auto driver though. But the people there take too much of risk for time they value their time a lot, because of time they can jump from a running bus to even catching a running bus. Anyway we reached charminar, now what? well we were hungry in the first place, not enough cash to go to a big shot resturant, so we went to a middium resturant ordered chicken biryani well it&#39;s popular there right? yeas we ordered and guess what, our Ambur dum biryani is better compared to that and that was too costly because of nothing just because it&#39;s hyderabad they charged us like anything. After having that awful lunch we visited Charminar. It was an awesome place I have to say I mean not that crowded place but the charminar itself. How does people of early days used to have so much creativity which is unable to see in the people now a days.&lt;br /&gt;&lt;/font&gt;
+&lt;p&gt;&lt;img src=&quot;https://scontent.fmaa1-2.fna.fbcdn.net/hphotos-xal1/t31.0-8/12095227_400553366809759_4201588438850904477_o.jpg&quot; width=&quot;100%&quot; /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;table&gt;&lt;tr&gt;
+&lt;td&gt;&lt;img src=&quot;https://scontent.fmaa1-2.fna.fbcdn.net/hphotos-xat1/t31.0-8/12080195_400553076809788_4344597614719247920_o.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://scontent.fmaa1-2.fna.fbcdn.net/hphotos-xta1/t31.0-8/12141094_400553353476427_5095597057918203678_o.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://scontent.fmaa1-2.fna.fbcdn.net/hphotos-xta1/t31.0-8/12095203_400553413476421_8271324173635546922_o.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&quot;https://scontent.fmaa1-2.fna.fbcdn.net/hphotos-xat1/t31.0-8/12087278_400553410143088_9141252588138629675_o.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;br /&gt;&lt;font size=&quot;4&quot;&gt;
+So far everything was good. It was around 5 o&#39;clock, Dilip suggested let&#39;s go to Golconda temple, which was again 7-8km from the place were in that time. I was fine with it, we got on bus directly to Golconda. But the closing time for Golconda is 5:30 Pm anyway we had no other choice by that i mean we had to go that way as our place is close to Golconda. SO we went there and it was around 7Pm also the bus conductor told us there&#39;s no direct buses to our place and we missed the place where we should be to go. I was scared as it was night and we were not knowing where to go so I suggested that anyway there&#39;s nothing to see here now so why don&#39;t we go back home moreover no point in wasting time now as we are tired and need rest because the next day is big for us. SO we came back to the spot where we should be, well comming back was not easy though. THose auto drivers were taking advantage of our situation ad charged twice the price it should be. Meanwhile in road while comming also that guy took more people as if it was a shared auto but he won&#39;t listen, we didn&#39;t speak much as left as it was. Came to the Tolichowki bus stand from there we took direct bus. The people in the bus helped us a lot I would have to say in informing us where to step down. We got down near Telecom nagar where we took some food for dinner. So that was it, had fun learnt a lot of thing, experienced a lot.&lt;/font&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 09 Oct 2015 00:00:00 +0530</pubDate>
+        <link>http://yourdomain.com/2015/10/09/daybeforehackathon.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2015/10/09/daybeforehackathon.html</guid>
+        
+        <category>Bangalore</category>
+        
+        <category>Hyderabad</category>
+        
+        <category>Hackathon</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>My First Hackathon</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/11222230_466364510208349_2316213553567738969_n.jpg?oh=fa563aa9e8a6f70a28c4492acbbeac27&amp;amp;oe=5689A4B2&quot; width=&quot;100%&quot; height=&quot;50%&quot; /&gt;&lt;br /&gt;
+&lt;!--&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/12049153_396502100548219_9194730164663853868_n.jpg?oh=c772a02293150cf0356c299b63d80c32&amp;oe=5691148B&quot; width=&quot;100%&quot; height=&quot;90%&quot;/&gt;--&gt;&lt;font size=&quot;4&quot;&gt;
+&lt;br /&gt; I am a programmer and I&#39;m new to this field believe it or not, but it&#39;s a passion for me, for many it might be just another toy to play with. Hackthon is a new field of interest, I was not aware of it&#39;s importance until I joined one. Well sometimes you don&#39;t need to win everything but you need to analyse and increase your networks as well as boraden your thinking ability, where hackathon is one of the best places I have found. It helps you interact with the leaders (Higher Officials) to all crazy geek people to HR, all under the same shell.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;It was a complete new experience for me as everything around me seems to be new. Thanks to my buddies Irfan and Dilip for taking me along. It was a thrilling experience that I had and was worth my time.&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Let me share some of the crazy things I felt to be interesting.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;The very moment we entered the Hall we could hear people taking about their ideas, some were busy discussing about the prize money and the IP(which means a lot) and few were busy downloading updates (I&#39;m one of those in later part, hahaha ). We entered the and a hackathon member(Philips member) reached us and asked us to register our team name. We did and sit on the center desk, Irfan was asking us lets move somewhere else in the sides as he didn&#39;t wanted people to look at our codes or our progress. Dilip told that most probably they will change in the later stage of the hackathon.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/t31.0-8/12038960_466364623541671_7451340381024208373_o.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Mr. Srinivas Prasad (CEO - Philips Innovation campus) entered the hall and addressed us about the importance of the hackathon as well as what they are expecting us to invent or create. From his small speech we gathered few important points and noted down. One of those points which I remember is &quot;App Concentric&quot;, so we understood basically they are looking for a medileware to filter all their data.He has also mentioned all the temas will get every possible support from the technical team who will be our mentors. After his small yet descriptive speech the mentors explained us about their platform i.e HSDP (HealthSuite Digital Platform) and also taught us about how to implement the same within our solution. We discussed among ourselves for a while regarding what we should do as we preplanned to make a dashboard on top of Django framework which they clearly mentioned we can&#39;t use. So we got scared and was bit frustrated. But we can make the solution as an IOS or Android or HTML based application. That was a plus point for us as I&#39;m an Android application developer but Irfan was bit dissapointed as we focused on Django and couldn&#39;t work on it, it was clearly visible on his face. Myself and Dilip didn&#39;t tell him that because if we tell he might feel bad about it.&lt;/font&gt;&lt;/p&gt;
+&lt;font size=&quot;4&quot;&gt;
+I would like to thank all the mentor very much for their help, which helped us a lot in building the solution.&lt;/font&gt;
+&lt;p&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/12027665_466364710208329_8775334428900266747_n.jpg?oh=d883ebb44c3c0e1be182193f56b4e791&amp;amp;oe=568FE7A8&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Almost two hours went by we couldn&#39;t come to a conclusion. The judges would come to us and ask what is our plan we used to tell what we planned on doing but they would say everyone is doing the samething so try to do something unique find out the key point. Meanwhile the other people around will listen to what we have planned and we would be hearing here and there people are planning to work on the same thing. The funniest part of all is that whatever we plan on doing and we will be talking among ourself, just after a minute or two someone else will be taking about the same to implement within their solution. It made us angry in one point of time where whatever we spoke all wants to dig into it and we had no new things to talk about.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;So we decided to take all the parameters in our hand and code it all. After sometime we felt it&#39;s not necessary. In order to take some rest we went out of Vivanta, and relaxed for while, roaming here and there posted a facebook post to tease our friends as within 2 days time we were supposed to write internal exam and we three were coding overnight. We got back and started from scratch. Irfan suggested lets look into all the personas(paramteres given to us) and decide on whom we should work and I will start working on the UI meanwhile.We had dinner, the food was delicious.We came back started brainstorming, after some times of digging the given document Irfan suggested lets work on Mark( One of the parameters). Meanwhile Dilip was wondering what&#39;s going on, what are we going to do as completely was based on analytics so i could understand a bit but not much, I was also wondering what should we work on.It was almost midnight we were all sleepy yet we had nothing to work on we were unable to finalise on what we should work on as all seems to be working on the same concept.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10418998_466044306907036_5743112939001139850_n.jpg?oh=2b6c8b6484bcf5aa2a7feab5db1f8f6d&amp;amp;oe=5687C878&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Then we thought if we simply sit back it&#39;s not going to help us rather we should split up the work and atleast complete half of the framework overnight. We decided Irfan wil do the Analysing of data, Dilip give us all ideas and resources he can gather from all around and meanwhile I will work on the app. At one point I got so frustrated as the element I was working on was new to me moreover the platform was causing so much problem. Somehow I managed to escape out of the error(it took me almost half an hour). All of us were working hard on our given field meanwhile Dilip kept his windows upgeading (because of which the wifi speed went down, lucky me by that time I have already updated my phone OS hahaha)&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;We worked entire night without a sleep and by the start the day, we basically had the backbone of our solution.We took some time rest, went out had wonderful breakfast and again got back to our work. Now is the time which was crucial for us where we needed to have a business module as well as a presentation. Dilip and Irfan was working on it, I couldn&#39;t as it was not my cup of coffee.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;The time come when he had to present our solution. We pushed Irfan to give the presentation as I have stage fear and Dilip was unaware of our solution completely. We did good the presentation, it was unique as we presented in proper manner with an working demo and Irfan explained properly about the complete structure of our solution.&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Finally the time came when they were about to declare the prize, Dilip said we will win this. I had no experience in this field so I can&#39;t tell on which basis he told. I was holding my breathe, they announced the second runners up, it was not us, then I thought maybe we are the first runners up, yet no. Then Mr. Srinivas asked guess who won, a person sitting next to me shouted &quot;Big Data&quot; so I thought Ok done, let&#39;s pack up, but out of the blue he told &quot;The winner is DashUp&quot;, I was thinking are you serious? We all smilied looked at ourself and was very happy about it. At last all the hard work paid off.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xat1/v/t1.0-0/s600x600/11225216_466364466875020_2798486131662858221_n.jpg?oh=fb4f5ae2c5571c5691d77d41bef06dd6&amp;amp;oe=56995C0F&quot; width=&quot;100%&quot; /&gt;
+&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xpf1/l/t31.0-8/12030425_877329102337447_5486086665497633457_o.jpg&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 03 Oct 2015 00:00:00 +0530</pubDate>
+        <link>http://yourdomain.com/2015/10/03/myfirsthackathon-post.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2015/10/03/myfirsthackathon-post.html</guid>
+        
+        <category>Hackathon</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Philips Digital Healthcare Conclave 2015</title>
+        <description>&lt;!--&lt;section&gt;--&gt;
+&lt;!--&lt;img src=&quot;http://d1pa4et5htdsls.cloudfront.net/images/vfml/1/1/2/4/4/0/1/9a2940c3_exterior_s-original.jpg&quot;/&gt;--&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.nextbigwhat.com/dhc2015/wp-content/uploads/2015/08/Philips-banner-ver-2-copy1.png&quot;&gt;
+&lt;img src=&quot;http://www.nextbigwhat.com/dhc2015/wp-content/uploads/2015/08/Philips-banner-ver-2-copy1.png&quot; width=&quot;100%&quot; height=&quot;50%&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;
+On 25th and 26th of September,2015 Philips Digital Heltcare Hackathon was organized by Philips Digital Healthcare Conclave 2015 and NextBigWhat powered by Philips Innovation Campus Bangalore.&lt;/font&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Venue :- &lt;a href=&quot;www.vivantabytaj.com/mgroad-bangalore/overview.html&quot;&gt;Vivanta By Taj - MG Road, Bangalore,Karnataka 560001&lt;/a&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Team Members : &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/profile/view?id=AAMAABV-4nMBg26svfS_TCYjJI_5XhRsIwx-vxg&amp;amp;authType=name&amp;amp;authToken=v3az&amp;amp;trk=hp-feed-member-name&quot;&gt;Dilip.S&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/profile/view?id=AAEAABSRrJQB5EcEGCNCuC7N9yu9nuJDCn2D8-k&amp;amp;trk=miniprofile-name-link&quot;&gt;Irfan Ali&lt;/a&gt; and &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://in.linkedin.com/pub/abhijit-das/a6/819/538&quot;&gt;Abhijit Das&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;font size=&quot;4&quot;&gt;
+The goal of the hackathon was to design and prototype an app that supports the collection and communication of health care data (clinical, consumer and environmental) to enable better-informed clinical decisions, more personalized care, and improve and benefit healthcare services in the country.Using Philips HealthSuite Digital Platform(HSDP).&lt;br /&gt;
+Challenges :-&lt;/font&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Elder care (Healthcare at home)&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Care Coordination&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Chronic Disease Management&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Consumer Engagement (motivate, make it sustainable, and give feedback)&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Employee Wellness&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font size=&quot;4&quot;&gt;Solution for the challenges we came up with was for Employee Wellness.&lt;/font&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+&lt;table&gt;
+
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;I would like to thank all the mentors for their help and wonderful behaviour toward us. They never said no when we asked them questions rather they were exhilarated to reply us back with all the possible resourceful answers and solutions as well.&lt;/font&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;font-size:20px; font-family: &#39;Open Sans&#39;, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;
+  font-weight: 800;&quot;&gt;Mentors&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/12027665_466364710208329_8775334428900266747_n.jpg?oh=d883ebb44c3c0e1be182193f56b4e791&amp;amp;oe=568FE7A8&quot;&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/12027665_466364710208329_8775334428900266747_n.jpg?oh=d883ebb44c3c0e1be182193f56b4e791&amp;amp;oe=568FE7A8&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;We (Team - Elpha, product - DashUp ), found &quot;Employee wellness&quot; to be very interesting because of certain condition where the maximum users is one of the constraints. We have been given six &quot;personas&quot; all were having their own unique health issues and the document was well described in vivid manner as well as to the point. We choose one of the personas called &quot;Mark&quot;, who was an employee, his healt issue was his weight because of the rank he got. His job was not active hence he gained a lot of weight over the year. He lives along with his friends, all were suffering from the same health issues.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Our work was to make him healthy and keep him motivated all the time to continue all the work and gym activities or any other activities he used to do to lose his weight.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;So we came up with a solution which can keep track of Mark&#39;s healthy condition and use peer pressure logic to keep him motivated. We have big plans to upgrade this project and convert it to a product.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;font style=&quot;font-weight:600; text-align: center;&quot; color=&quot;Green&quot;&gt;RESULT : We won the Philips Digital Helthcare Hackathon 2015 &lt;/font&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;!--&lt;font  id=&quot;gallery&quot;&gt; Gallery &lt;/font&gt;--&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;!--First row of the first table--&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot; style=&quot;font-size:20px; font-family: &#39;Open Sans&#39;, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;
+  font-weight: 800;&quot;&gt; Gallery 
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;!--Second row for the first table--&gt;
+&lt;tr&gt;
+&lt;td align=&quot;top&quot;&gt;
+&lt;!--Second table within first table--&gt;
+     &lt;a href=&quot;https://scontent.xx.fbcdn.net/hphotos-xat1/v/t1.0-0/s600x600/11225216_466364466875020_2798486131662858221_n.jpg?oh=fb4f5ae2c5571c5691d77d41bef06dd6&amp;amp;oe=56995C0F&quot;&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xat1/v/t1.0-0/s600x600/11225216_466364466875020_2798486131662858221_n.jpg?oh=fb4f5ae2c5571c5691d77d41bef06dd6&amp;amp;oe=56995C0F&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;br /&gt;
+     &lt;tr&gt;
+     &lt;td align=&quot;bottom&quot;&gt;&lt;a href=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/12063646_466189116892555_7361383929499011752_n.jpg?oh=fefc560506cfc1b9d0801dff33acd899&amp;amp;oe=5690F8DE&quot;&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/12063646_466189116892555_7361383929499011752_n.jpg?oh=fefc560506cfc1b9d0801dff33acd899&amp;amp;oe=5690F8DE&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt; &lt;a href=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/12027665_466364710208329_8775334428900266747_n.jpg?oh=d883ebb44c3c0e1be182193f56b4e791&amp;amp;oe=568FE7A8&quot;&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/12027665_466364710208329_8775334428900266747_n.jpg?oh=d883ebb44c3c0e1be182193f56b4e791&amp;amp;oe=568FE7A8&quot; width=&quot;110%&quot; /&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;&lt;a href=&quot;https://scontent.xx.fbcdn.net/hphotos-xfp1/t31.0-8/12001096_466364520208348_5714455026096616879_o.jpg&quot;&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xfp1/t31.0-8/12001096_466364520208348_5714455026096616879_o.jpg&quot; width=&quot;90%&quot; /&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt; &lt;a href=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/t31.0-8/12038960_466364623541671_7451340381024208373_o.jpg&quot;&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/t31.0-8/12038960_466364623541671_7451340381024208373_o.jpg&quot; width=&quot;90%&quot; /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;!--&lt;/section&gt;--&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 27 Sep 2015 00:00:00 +0530</pubDate>
+        <link>http://yourdomain.com/2015/09/27/pdhc2015-post.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2015/09/27/pdhc2015-post.html</guid>
+        
+        <category>Philips</category>
+        
+        <category>Hackathon</category>
+        
+        <category>Digital</category>
+        
+        <category>Bangalore</category>
+        
+        <category>Taj Vivanta</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>ExpenseDroid - Expense Manager</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.tphoneix.avi.myapplication&quot;&gt;&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xpf1/t31.0-8/12006619_393801974151565_5620555973111953212_o.jpg&quot; alt=&quot;IMAGE ALT TEXT HERE&quot; width=&quot;100%&quot; height=&quot;50%&quot; border=&quot;10&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;font size=&quot;4&quot;&gt;This is my very first android application. The idea of making the following app came to me out of blue. After learning Java I planned on getting into Android Developement as it was new to me then and I was very much interested. So I statrted working on it on July.  Being an undergraduate has it&#39;s own benefit as well as drawbacks, one of the major drawback is lack of time because of the internals as well as the assignments. Out of the busy schedule I used to work during the ongoing sessions, break time as well as at night as long as I could, it was fun even more then attending the session.  &lt;/font&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font size=&quot;4&quot;&gt;There was a day when I was also a noob to git and a crazy thing happend. Well when you are new to a field few crazy stuff will happen which helps you understand the poblem more and will tell you a simplified way to do it in next phase of the operation or developement. The crazy thing was that I don&#39;t used to add all my source files to git as I wasn&#39;t aware of it back then, so one day by mistake I have refractored a system keyword which spoiled my entire code. As I didn&#39;t have the entire source code because i wasn&#39;t adding the new files created to git I was so depressed and frustrated. So that night I had an wonderful opportunity to work all night and completed the code back from scratch, I was bit lucky too as that time the app was only 1/4.&lt;/font&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/vZhSkW4gBZhjxiBT2h0KUoY5g9gwJZjTbEy-YEc014MBLZuW5QsEwDmHlTsZYN5tIF8U=h900&quot; width=&quot;180&quot; height=&quot;300&quot; /&gt; 
+&lt;img src=&quot;https://lh3.googleusercontent.com/sMCUdmlp23t1PIMTRvpJK7jWwUujg-MU40Jisj4U4Z_PMBjsb_vdOFgDNlCH45MMTDI=h900&quot; width=&quot;180&quot; height=&quot;300&quot; /&gt; 
+&lt;img src=&quot;https://lh3.googleusercontent.com/M4RgrnxGuMfQhBQbyCS9FdRE6fg_8PjnKIbcA9yJ_UhRbo_xkvkNttCSOm2nkKsjEg2c=h900&quot; width=&quot;180&quot; height=&quot;300&quot; /&gt; 
+&lt;img src=&quot;https://lh3.googleusercontent.com/6ZqQDTHB6-Zsxucf2p73YkybcwugUS8D7TXKtNFTvXz_UcNsc2_GF3qbEbyxIw2o7A=h900&quot; width=&quot;180&quot; height=&quot;300&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;Let&#39;s get back to where we were. &lt;br /&gt;What is ExpenseDroid? ExpenseDroid is an expense manager which helps you to keep track of your spendings more seamlessly with an userfriendly and elegant interface.The app take inputs dynamically and displays it in a statistical manner in the form of graphs, charts and map, which makes easy for you to understand and analyse your spendings more precisely.
+It also includes some in-app widget like currency converter and stock exchange to make it easier for you to get all details in one app.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;4&quot;&gt;This app is meant for managing the expense precisely. There might be thousands of expense app out there in the Google play market so how is it different? Well those apps are not made as a project by some undergraduates as the very first testing app.. kidding, this app is different in terms of UX i.e user experience as well as the UI and its still developing hence we plan on putting numerous ways to ease your effort in managing your expense, with this app you get to know where you have spent, the precise location, what you bought with sub categories as well as multimedia for now it supports only pictures, trips- where you get to know what all you have done, goals- it shows you a guided way to save your money in order for you to get some items that you wish to get.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xpa1/t31.0-8/12015097_393800057485090_7521611217275206800_o.jpg&quot; width=&quot;160&quot; height=&quot;300&quot; /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/t31.0-8/11999739_393800124151750_6406043462048644609_o.jpg&quot; width=&quot;160&quot; height=&quot;300&quot; /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xtf1/t31.0-8/12002378_393800070818422_2797436186063993693_o.jpg&quot; width=&quot;160&quot; height=&quot;300&quot; /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;img src=&quot;https://scontent.xx.fbcdn.net/hphotos-xtp1/t31.0-8/12039150_393800097485086_3647116484074251869_o.jpg&quot; width=&quot;160&quot; height=&quot;300&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;font size=&quot;4&quot;&gt;
+I as the developer don&#39;t plan on monetising the app by selling the icons or any new features that we will be adding on the go, so whatever we add all will be free to users. The app is completely free and upgradable based on user&#39;s feedback.
+&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.tphoneix.avi.myapplication&quot;&gt; &lt;img src=&quot;http://www.charitymiles.org/assets/playstorebadge.svg&quot; width=&quot;180&quot; height=&quot;80&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;http://www.amazon.com/silverFoxA-ExpenseDroid-Expense-Manager/dp/B013QNG8HG/ref=sr_1_1?s=mobile-apps&amp;amp;ie=UTF8&amp;amp;qid=1442316190&amp;amp;sr=1-1&amp;amp;keywords=expensedroid&quot;&gt;&lt;img src=&quot;http://www.touchbible.com/images/amazonappstore.png&quot; width=&quot;200&quot; height=&quot;60&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+</description>
+        <pubDate>Tue, 15 Sep 2015 00:00:00 +0530</pubDate>
+        <link>http://yourdomain.com/2015/09/15/expensedroid-post.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2015/09/15/expensedroid-post.html</guid>
+        
+        <category>ExpenseDroid</category>
+        
+        <category>silverFoxA</category>
+        
+        <category>Android</category>
+        
+        <category>Google Play Store</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

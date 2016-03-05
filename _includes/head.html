@@ -1,0 +1,114 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+    <meta property="og:site_name" content="silverFoxA"/>
+    <meta property="og:type" content="Personal website" />
+    <meta property="og:title" content="silverFoxA" />
+    <meta property="og:description" content="Mobile application and web developer." />
+    <meta property="og:url" content="http://silverfoxa.github.io"/>
+    <meta property="og:image" content="{{site.baseurl}}/images/recentwork/silverfoxa.png"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="{{site.baseurl}}/ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{site.baseurl}}/ico/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{site.baseurl}}/ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{site.baseurl}}/ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{site.baseurl}}/ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{site.baseurl}}/ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{site.baseurl}}/ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{site.baseurl}}/ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{site.baseurl}}/ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{site.baseurl}}/ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{site.baseurl}}/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{site.baseurl}}/ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{site.baseurl}}/ico/favicon-16x16.png">
+    <link rel="manifest" href="{{site.baseurl}}/ico/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{site.baseurl}}/ico/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="{{site.baseurl}}//css/main.css">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+	<!-- Stylesheets
+	============================================= -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{{site.baseurl}}/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="{{site.baseurl}}/css/dark.css" type="text/css" />
+
+	<link rel="stylesheet" href="{{site.baseurl}}/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="{{site.baseurl}}/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="{{site.baseurl}}/css/magnific-popup.css" type="text/css" />
+    <link rel="stylesheet" href="{{site.baseurl}}/css/owl.carousel.css">
+    <link rel="stylesheet" href="{{site.baseurl}}/css/owl.theme.default.css">
+ <!-- ===========================
+    ICONS:
+    =========================== -->
+    <link rel="stylesheet" href="{{site.baseurl}}/css/simple-line-icons.css">
+
+     <link rel="stylesheet" href="{{site.baseurl}}/css/style.css" type="text/css" />
+
+	<link rel="stylesheet" href="{{site.baseurl}}/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="{{site.baseurl}}/js/jquery.js"></script>
+	<script type="text/javascript" src="{{site.baseurl}}/js/plugins.js"></script>
+
+	<!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
+	<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/include/rs-plugin/css/settings.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/include/rs-plugin/css/layers.css">
+	<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/include/rs-plugin/css/navigation.css">
+
+	<!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
+	<script type="text/javascript" src="{{site.baseurl}}/include/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+	<script type="text/javascript" src="{{site.baseurl}}/include/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+<!--    -->
+	<!-- Document Title
+	============================================= -->
+<!--	<title>Home || silverFoxA </title>-->
+
+	<style>
+
+		.revo-slider-emphasis-text {
+			font-size: 58px;
+			font-weight: 700;
+			letter-spacing: 1px;
+			font-family: 'Raleway', sans-serif;
+			padding: 15px 20px;
+			border-top: 2px solid #FFF;
+			border-bottom: 2px solid #FFF;
+		}
+
+		.revo-slider-desc-text {
+			font-size: 20px;
+			font-family: 'Lato', sans-serif;
+			width: 650px;
+			text-align: center;
+			line-height: 1.5;
+		}
+
+		.revo-slider-caps-text {
+			font-size: 16px;
+			font-weight: 400;
+			letter-spacing: 3px;
+			font-family: 'Raleway', sans-serif;
+		}
+
+		.tp-video-play-button { display: none !important; }
+
+		.tp-caption { white-space: nowrap; }
+
+        */
+       
+	</style>
+
+</head>
