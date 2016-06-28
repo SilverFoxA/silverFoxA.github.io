@@ -52,8 +52,13 @@ layout: contact_default
 					<div class="postcontent nobottommargin">
 
 						<h3>Send me an Email</h3>
+<?php 
+if(isset($_GET['message'])){
 
-<!--						<div id="contact-form-result" data-notify-type="success" data-notify-msg="<i class=icon-ok-sign></i> Message Sent Successfully!"></div>-->
+echo '<div id="contact-form-result" data-notify-type="success" data-notify-msg="<i class=icon-ok-sign></i> Message Sent Successfully!"></div>';
+}
+?>
+						
 
 						<form class="nobottommargin" id="template-contactform" name="template-contactform"  method="post">
 
@@ -105,6 +110,7 @@ layout: contact_default
 							</div>
 <input type="text" name="_gotcha" style="display:none"/>
   <input type="hidden" name="_next" value="./contact?message=Your message was sent successfully, thanks!"/>
+                            <input type="hidden" name="_cc" value="abhijit2294@gmail.com" />
 							<div class="col_full">
 								<button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">Send Message</button>
 							</div>
