@@ -120,11 +120,7 @@ echo
 
 						<script type="text/javascript">
 
-							$("#template-contactform").validate({
-								submitHandler: function(form) {
-									$('.form-process').fadeIn();
-								}
-							});
+							$("#template-contactform").validate();
                              var contactform =  document.getElementById('template-contactform');
     contactform.setAttribute('action', '//formspree.io/' + 'silverfoxa14' + '@' + 'gmail' + '.' + 'com');
 
