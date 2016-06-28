@@ -14875,3 +14875,6 @@ font-size: 17px;
             right: auto;
         }
 }
+#contact-form-result {
+    display:block;
+}
