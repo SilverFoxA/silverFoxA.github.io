@@ -11701,7 +11701,7 @@ button.toast-close-button {
 
 #footer .footer-widgets-wrap {
 	position: relative;
-	padding: 80px 0 40px 0;
+	padding: 60px 0 20px 0;
 }
 
 .footer-widgets-wrap .col_full,
@@ -11761,7 +11761,7 @@ button.toast-close-button {
 
 .footer-logo {
 	display: block;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 
@@ -11788,10 +11788,10 @@ button.toast-close-button {
 }
 
 .widget > h4 {
-	margin-bottom: 25px;
-	font-size: 15px;
+	font-size: 16px;
 	font-weight: 600;
-	letter-spacing: 2px;
+	letter-spacing: 1px;
+    font-style: oblique;
 	text-transform: uppercase;
 }
 
@@ -13294,8 +13294,9 @@ body:not(.no-transition) #wrapper,
 
 
 .copyright {
+    background-color: black;
     text-align: center;
-    padding-bottom: 10px;
+    padding: 20px;
 }
 
 .custom_indicators {
@@ -14878,3 +14879,14 @@ font-size: 17px;
 #contact-form-result {
     display:block;
 }
+
+hr.dubble-border, .footer-menu a::after {
+    border-bottom: 1px solid #525252;
+    border-top: 1px solid #000;
+}
+
+hr.dubble-border {
+  margin: 0 0 10px;
+}
+
+
