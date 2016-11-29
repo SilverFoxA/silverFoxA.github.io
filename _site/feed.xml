@@ -5,9 +5,57 @@
     <description></description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 09 Sep 2016 21:03:10 +0530</pubDate>
-    <lastBuildDate>Fri, 09 Sep 2016 21:03:10 +0530</lastBuildDate>
+    <pubDate>Tue, 29 Nov 2016 17:19:45 +0530</pubDate>
+    <lastBuildDate>Tue, 29 Nov 2016 17:19:45 +0530</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Developer life is unpredictable.</title>
+        <description>&lt;style&gt;
+p{
+font-size: 20px;
+}
+&lt;/style&gt;
+
+&lt;p&gt;Life is a mess, but it teaches us a lot of important stuffs.&lt;strong&gt; It&#39;s not about
+being a loser rather after losing how many times you tired to stand up to fight back.&lt;/strong&gt;&lt;p&gt;
+
+&lt;p&gt;I am a developer but that doesn&#39;t mean I can&#39;t blog duh!! :P &lt;br /&gt;Well the truth is I&#39;m bit upset from some &lt;strong&gt;recent experiences&lt;/strong&gt;
+ and I blog when I&#39;m upset. The idea of blogging is really interesting, none really cares about you or what happen in your life but for
+ an instance they stop by to peek if your life is much more disturbing then their.&lt;/p&gt;
+ &lt;br /&gt;&lt;p&gt;&lt;strong&gt;This is what I do every single day&lt;/strong&gt;&lt;/p&gt;&lt;br /&gt;
+ &lt;p&gt;&lt;strong&gt;I code. Yes, I do. So what?!&lt;/strong&gt;&lt;br /&gt;Why you people are so much bothered about me coding whole day long?
+ &lt;strong&gt;I cook my own food, I don&#39;t see you cooking my food&lt;/strong&gt;. So just let me do what I like. You are not me, are you? Neither am I?
+ It&#39;s not like you can&#39;t be me but I will be me myself.&lt;/p&gt;&lt;br /&gt;
+ &lt;p&gt;Sometimes I wake up early in the morning(3/4 am), nightmare and stuffs, so I just take my phone keep using facebook for an hour
+ or so to just get few intel mostly news and daily dose on what&#39;s going on where until I see feeds/posts from past days.
+ Facebook seems more like a medium for news to me, get most of the stuffs from there.&lt;/p&gt;&lt;p&gt;Try to take a nap after that but can&#39;t, well simply can&#39;t.
+  So I take my &lt;strong&gt;best friend (laptop)&lt;/strong&gt; out and start (coding)doing that really makes me happy.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Yes coding whole day doesn&#39;t make me tired but gossiping a min makes me sleepy.&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;The truth is, there&#39;s two set of people who likes gossiping, one who is &lt;strong&gt;jobless&lt;/strong&gt; and the second is &lt;strong&gt;rich bugger&lt;/strong&gt;, sometimes they just
+  spoil the mood. They are living a miserable life being completely dependent on their parent at the age of 20 or so and instead of working hard and make some good use of the
+  opportunity that they have got, they are busy wasting other&#39;s time and degrading other&#39;s efforts. &lt;strong&gt;Yeah got it you are jobless, no comment.&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;The important stuff here is &lt;strong&gt;you do your work, let other do their&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;I chosed to be a developer and that&#39;s totally my choice, I write code whole day that&#39;s because I have some responsibilities. My life isn&#39;t as pleasant as your.&lt;/p&gt;
+&lt;/p&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 29 Nov 2016 00:00:00 +0530</pubDate>
+        <link>http://yourdomain.com/2016/11/29/complicated-post.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2016/11/29/complicated-post.html</guid>
+        
+        <category>silverFoxA</category>
+        
+        <category>Android</category>
+        
+        <category>Website</category>
+        
+        <category>Web Development</category>
+        
+        <category>Google Play Store</category>
+        
+        
+      </item>
     
       <item>
         <title>How I developed GetOn?</title>
